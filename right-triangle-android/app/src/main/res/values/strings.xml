@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Carpenter Calculator</string>
+    <string name="app_name">Construction Calculator</string>
     <string-array name="operations">
         <item>Add</item>
         <item>Subtract</item>

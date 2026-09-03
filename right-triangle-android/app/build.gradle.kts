@@ -28,6 +28,6 @@ kotlin {
 firebaseAppDistributionDefault {
     appId = System.getenv("FIREBASE_APP_ID") ?: ""
     testers = System.getenv("FIREBASE_TESTERS") ?: ""
-    releaseNotes = "Carpenter Calculator tester build"
+    releaseNotes = "Construction Calculator tester build"
     serviceCredentialsFile = System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 }

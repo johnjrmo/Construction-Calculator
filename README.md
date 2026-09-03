@@ -1,4 +1,4 @@
-This is a Carpenter Calculator that works on an Android version 16 Samsung phone. It calculates the hypotenuse of a right hand triangle in feet/inches, performs arithmetic on feet-and-inch measurements, calculates material volume, and estimates tons by material type.
+This is a Construction Calculator that works on an Android version 16 Samsung phone. It calculates the hypotenuse of a right hand triangle in feet/inches, performs arithmetic on feet-and-inch measurements, calculates material volume, and estimates tons by material type.
 
 ## Firebase App Distribution
 
