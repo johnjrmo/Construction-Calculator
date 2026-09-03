@@ -59,6 +59,16 @@
                 android:text="Feet &amp; inches"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/volumeTabButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:text="Material"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
         </LinearLayout>
 
         <LinearLayout
@@ -136,6 +146,43 @@
             <TextView android:id="@+id/feetInchesError" android:layout_width="match_parent" android:layout_height="24dp" android:layout_marginTop="8dp" android:textColor="@color/coral" android:textSize="12sp" />
             <TextView android:id="@+id/feetInchesSummary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Waiting for measurements" android:textColor="@color/muted" android:textSize="12sp" />
             <TextView android:id="@+id/feetInchesResult" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="--" android:textColor="@color/ink" android:textSize="24sp" android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/volumeContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/panel"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Material required" android:textColor="@color/ink" android:textSize="20sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:text="Find the cubic yards needed to fill a 3D area." android:textColor="@color/muted" android:textSize="13sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="22dp" android:text="Height" android:textColor="@color/ink" android:textStyle="bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
+                <EditText android:id="@+id/heightFeet" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:background="@drawable/input_background" android:hint="0" android:inputType="number" android:padding="12dp" android:singleLine="true" android:contentDescription="Height feet" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_marginStart="-32dp" android:text="ft" android:textColor="@color/muted" />
+                <EditText android:id="@+id/heightInches" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_weight="1" android:background="@drawable/input_background" android:hint="0" android:inputType="numberDecimal" android:padding="12dp" android:singleLine="true" android:contentDescription="Height inches" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_marginStart="-32dp" android:text="in" android:textColor="@color/muted" />
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Width" android:textColor="@color/ink" android:textStyle="bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
+                <EditText android:id="@+id/widthFeet" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:background="@drawable/input_background" android:hint="0" android:inputType="number" android:padding="12dp" android:singleLine="true" android:contentDescription="Width feet" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_marginStart="-32dp" android:text="ft" android:textColor="@color/muted" />
+                <EditText android:id="@+id/widthInches" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_weight="1" android:background="@drawable/input_background" android:hint="0" android:inputType="numberDecimal" android:padding="12dp" android:singleLine="true" android:contentDescription="Width inches" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_marginStart="-32dp" android:text="in" android:textColor="@color/muted" />
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Length" android:textColor="@color/ink" android:textStyle="bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
+                <EditText android:id="@+id/lengthFeet" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:background="@drawable/input_background" android:hint="0" android:inputType="number" android:padding="12dp" android:singleLine="true" android:contentDescription="Length feet" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_marginStart="-32dp" android:text="ft" android:textColor="@color/muted" />
+                <EditText android:id="@+id/lengthInches" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_weight="1" android:background="@drawable/input_background" android:hint="0" android:inputType="numberDecimal" android:padding="12dp" android:singleLine="true" android:contentDescription="Length inches" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_marginStart="-32dp" android:text="in" android:textColor="@color/muted" />
+            </LinearLayout>
+            <Button android:id="@+id/volumeCalculateButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:background="@drawable/button_background" android:text="Calculate material" android:textAllCaps="false" android:textColor="@android:color/white" />
+            <TextView android:id="@+id/volumeError" android:layout_width="match_parent" android:layout_height="24dp" android:layout_marginTop="8dp" android:textColor="@color/coral" android:textSize="12sp" />
+            <TextView android:id="@+id/volumeSummary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Waiting for dimensions" android:textColor="@color/muted" android:textSize="12sp" />
+            <TextView android:id="@+id/volumeResult" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="--" android:textColor="@color/ink" android:textSize="24sp" android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

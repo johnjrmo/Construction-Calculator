@@ -20,8 +20,10 @@ class MainActivity : Activity() {
         setContentView(binding.root)
         binding.triangleTabButton.setOnClickListener { showTriangleTab() }
         binding.feetInchesTabButton.setOnClickListener { showFeetInchesTab() }
+        binding.volumeTabButton.setOnClickListener { showVolumeTab() }
         binding.calculateButton.setOnClickListener { calculate() }
         binding.feetInchesCalculateButton.setOnClickListener { calculateFeetInches() }
+        binding.volumeCalculateButton.setOnClickListener { calculateVolume() }
         fields.forEach { it.setOnEditorActionListener { _, _, _ -> calculate(); true } }
     }
 
@@ -87,18 +89,56 @@ class MainActivity : Activity() {
     private fun showTriangleTab() {
         binding.triangleContent.visibility = android.view.View.VISIBLE
         binding.feetInchesContent.visibility = android.view.View.GONE
-        setTabState(binding.triangleTabButton, binding.feetInchesTabButton)
+        binding.volumeContent.visibility = android.view.View.GONE
+        setTabState(binding.triangleTabButton, binding.feetInchesTabButton, binding.volumeTabButton)
     }
 
     private fun showFeetInchesTab() {
         binding.triangleContent.visibility = android.view.View.GONE
         binding.feetInchesContent.visibility = android.view.View.VISIBLE
-        setTabState(binding.feetInchesTabButton, binding.triangleTabButton)
+        binding.volumeContent.visibility = android.view.View.GONE
+        setTabState(binding.feetInchesTabButton, binding.triangleTabButton, binding.volumeTabButton)
     }
 
-    private fun setTabState(selected: Button, unselected: Button) {
+    private fun showVolumeTab() {
+        binding.triangleContent.visibility = android.view.View.GONE
+        binding.feetInchesContent.visibility = android.view.View.GONE
+        binding.volumeContent.visibility = android.view.View.VISIBLE
+        setTabState(binding.volumeTabButton, binding.triangleTabButton, binding.feetInchesTabButton)
+    }
+
+    private fun setTabState(selected: Button, vararg unselected: Button) {
         selected.alpha = 1f
-        unselected.alpha = 0.55f
+        unselected.forEach { it.alpha = 0.55f }
+    }
+
+    private fun calculateVolume() {
+        val heightFeet = value(binding.heightFeet)
+        val heightInches = value(binding.heightInches)
+        val widthFeet = value(binding.widthFeet)
+        val widthInches = value(binding.widthInches)
+        val lengthFeet = value(binding.lengthFeet)
+        val lengthInches = value(binding.lengthInches)
+        binding.volumeError.text = ""
+        val dimensions = listOf(heightFeet, heightInches, widthFeet, widthInches, lengthFeet, lengthInches)
+        if (dimensions.any { it < 0 }) {
+            binding.volumeError.text = "Values cannot be negative."
+            return
+        }
+        if (listOf(heightInches, widthInches, lengthInches).any { it >= 12 }) {
+            binding.volumeError.text = "Inches must be less than 12."
+            return
+        }
+        val height = heightFeet * 12 + heightInches
+        val width = widthFeet * 12 + widthInches
+        val length = lengthFeet * 12 + lengthInches
+        if (height == 0.0 || width == 0.0 || length == 0.0) {
+            binding.volumeError.text = "Enter a value for all three dimensions."
+            return
+        }
+        val cubicYards = height * width * length / 46656.0
+        binding.volumeResult.text = "${formatDecimal(cubicYards)} cubic yd"
+        binding.volumeSummary.text = "Order ${kotlin.math.ceil(cubicYards).toInt()} cubic yd"
     }
 
     private fun formatFeetInches(totalInches: Double): String {
