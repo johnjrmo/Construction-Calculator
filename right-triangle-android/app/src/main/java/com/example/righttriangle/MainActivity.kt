@@ -21,7 +21,6 @@ class MainActivity : Activity() {
         binding.triangleTabButton.setOnClickListener { showTriangleTab() }
         binding.feetInchesTabButton.setOnClickListener { showFeetInchesTab() }
         binding.volumeTabButton.setOnClickListener { showVolumeTab() }
-        binding.tonsTabButton.setOnClickListener { showTonsTab() }
         binding.calculateButton.setOnClickListener { calculate() }
         binding.feetInchesCalculateButton.setOnClickListener { calculateFeetInches() }
         binding.volumeCalculateButton.setOnClickListener { calculateVolume() }
@@ -92,32 +91,21 @@ class MainActivity : Activity() {
         binding.triangleContent.visibility = android.view.View.VISIBLE
         binding.feetInchesContent.visibility = android.view.View.GONE
         binding.volumeContent.visibility = android.view.View.GONE
-        binding.tonsContent.visibility = android.view.View.GONE
-        setTabState(binding.triangleTabButton, binding.feetInchesTabButton, binding.volumeTabButton, binding.tonsTabButton)
+        setTabState(binding.triangleTabButton, binding.feetInchesTabButton, binding.volumeTabButton)
     }
 
     private fun showFeetInchesTab() {
         binding.triangleContent.visibility = android.view.View.GONE
         binding.feetInchesContent.visibility = android.view.View.VISIBLE
         binding.volumeContent.visibility = android.view.View.GONE
-        binding.tonsContent.visibility = android.view.View.GONE
-        setTabState(binding.feetInchesTabButton, binding.triangleTabButton, binding.volumeTabButton, binding.tonsTabButton)
+        setTabState(binding.feetInchesTabButton, binding.triangleTabButton, binding.volumeTabButton)
     }
 
     private fun showVolumeTab() {
         binding.triangleContent.visibility = android.view.View.GONE
         binding.feetInchesContent.visibility = android.view.View.GONE
         binding.volumeContent.visibility = android.view.View.VISIBLE
-        binding.tonsContent.visibility = android.view.View.GONE
-        setTabState(binding.volumeTabButton, binding.triangleTabButton, binding.feetInchesTabButton, binding.tonsTabButton)
-    }
-
-    private fun showTonsTab() {
-        binding.triangleContent.visibility = android.view.View.GONE
-        binding.feetInchesContent.visibility = android.view.View.GONE
-        binding.volumeContent.visibility = android.view.View.GONE
-        binding.tonsContent.visibility = android.view.View.VISIBLE
-        setTabState(binding.tonsTabButton, binding.triangleTabButton, binding.feetInchesTabButton, binding.volumeTabButton)
+        setTabState(binding.volumeTabButton, binding.triangleTabButton, binding.feetInchesTabButton)
     }
 
     private fun setTabState(selected: Button, vararg unselected: Button) {
