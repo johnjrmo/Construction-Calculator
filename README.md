@@ -1,0 +1,1 @@
+This is a Carpenter Calculator that works on an Android version 16 Samsung phone.  It calculates the hypotenuse of a right hand triangle in feet/inches and also has a function to add, subtract, multiply and divide two numbers provided in feet and inches.
