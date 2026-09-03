@@ -6,4 +6,9 @@
         <item>Multiply</item>
         <item>Divide</item>
     </string-array>
+    <string-array name="materials">
+        <item>Sand</item>
+        <item>Gravel</item>
+        <item>Concrete</item>
+    </string-array>
 </resources>

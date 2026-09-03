@@ -21,9 +21,11 @@ class MainActivity : Activity() {
         binding.triangleTabButton.setOnClickListener { showTriangleTab() }
         binding.feetInchesTabButton.setOnClickListener { showFeetInchesTab() }
         binding.volumeTabButton.setOnClickListener { showVolumeTab() }
+        binding.tonsTabButton.setOnClickListener { showTonsTab() }
         binding.calculateButton.setOnClickListener { calculate() }
         binding.feetInchesCalculateButton.setOnClickListener { calculateFeetInches() }
         binding.volumeCalculateButton.setOnClickListener { calculateVolume() }
+        binding.tonsCalculateButton.setOnClickListener { calculateTons() }
         fields.forEach { it.setOnEditorActionListener { _, _, _ -> calculate(); true } }
     }
 
@@ -90,21 +92,32 @@ class MainActivity : Activity() {
         binding.triangleContent.visibility = android.view.View.VISIBLE
         binding.feetInchesContent.visibility = android.view.View.GONE
         binding.volumeContent.visibility = android.view.View.GONE
-        setTabState(binding.triangleTabButton, binding.feetInchesTabButton, binding.volumeTabButton)
+        binding.tonsContent.visibility = android.view.View.GONE
+        setTabState(binding.triangleTabButton, binding.feetInchesTabButton, binding.volumeTabButton, binding.tonsTabButton)
     }
 
     private fun showFeetInchesTab() {
         binding.triangleContent.visibility = android.view.View.GONE
         binding.feetInchesContent.visibility = android.view.View.VISIBLE
         binding.volumeContent.visibility = android.view.View.GONE
-        setTabState(binding.feetInchesTabButton, binding.triangleTabButton, binding.volumeTabButton)
+        binding.tonsContent.visibility = android.view.View.GONE
+        setTabState(binding.feetInchesTabButton, binding.triangleTabButton, binding.volumeTabButton, binding.tonsTabButton)
     }
 
     private fun showVolumeTab() {
         binding.triangleContent.visibility = android.view.View.GONE
         binding.feetInchesContent.visibility = android.view.View.GONE
         binding.volumeContent.visibility = android.view.View.VISIBLE
-        setTabState(binding.volumeTabButton, binding.triangleTabButton, binding.feetInchesTabButton)
+        binding.tonsContent.visibility = android.view.View.GONE
+        setTabState(binding.volumeTabButton, binding.triangleTabButton, binding.feetInchesTabButton, binding.tonsTabButton)
+    }
+
+    private fun showTonsTab() {
+        binding.triangleContent.visibility = android.view.View.GONE
+        binding.feetInchesContent.visibility = android.view.View.GONE
+        binding.volumeContent.visibility = android.view.View.GONE
+        binding.tonsContent.visibility = android.view.View.VISIBLE
+        setTabState(binding.tonsTabButton, binding.triangleTabButton, binding.feetInchesTabButton, binding.volumeTabButton)
     }
 
     private fun setTabState(selected: Button, vararg unselected: Button) {
@@ -139,6 +152,28 @@ class MainActivity : Activity() {
         val cubicYards = height * width * length / 46656.0
         binding.volumeResult.text = "${formatDecimal(cubicYards)} cubic yd"
         binding.volumeSummary.text = "Order ${kotlin.math.ceil(cubicYards).toInt()} cubic yd"
+    }
+
+    private fun calculateTons() {
+        val cubicYards = value(binding.tonsCubicYards)
+        binding.tonsError.text = ""
+        if (cubicYards < 0) {
+            binding.tonsError.text = "Cubic yards cannot be negative."
+            return
+        }
+        if (cubicYards == 0.0) {
+            binding.tonsError.text = "Enter the cubic yards required."
+            return
+        }
+        val material = binding.materialSpinner.selectedItem.toString()
+        val tonsPerCubicYard = when (material) {
+            "Sand" -> 1.4
+            "Gravel" -> 1.5
+            else -> 2.0
+        }
+        val tons = cubicYards * tonsPerCubicYard
+        binding.tonsResult.text = "${formatDecimal(tons)} tons"
+        binding.tonsSummary.text = "$material estimate at $tonsPerCubicYard tons per cubic yd"
     }
 
     private fun formatFeetInches(totalInches: Double): String {
