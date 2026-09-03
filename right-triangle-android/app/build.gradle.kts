@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.firebase.appdistribution")
 }
 
 android {
@@ -22,4 +23,11 @@ android {
 
 kotlin {
     jvmToolchain(17)
+}
+
+firebaseAppDistributionDefault {
+    appId = System.getenv("FIREBASE_APP_ID") ?: ""
+    testers = System.getenv("FIREBASE_TESTERS") ?: ""
+    releaseNotes = "Carpenter Calculator tester build"
+    serviceCredentialsFile = System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 }
