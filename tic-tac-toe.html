@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tic-Tac-Toe</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#17242a;background:#f5f1e8}body{display:grid;place-items:center;min-height:100vh;margin:0}.game{text-align:center}.board{display:grid;grid-template-columns:repeat(3,100px);gap:6px;margin:24px auto;background:#087f78}.cell{width:100px;height:100px;border:0;background:#fffdf8;font-size:3rem;font-weight:700;color:#e36d50;cursor:pointer}.cell.o{color:#087f78}.cell:disabled{cursor:default}.controls{display:flex;gap:10px;justify-content:center}button.action{border:0;border-radius:6px;padding:10px 14px;color:white;background:#087f78;cursor:pointer}button.action:hover{background:#075d59}#message{min-height:1.5em}@media(max-width:380px){.board{grid-template-columns:repeat(3,27vw)}.cell{width:27vw;height:27vw}}
+</style>
+</head>
+<body>
+<main class="game"><h1>Tic-Tac-Toe</h1><p id="message">X's turn</p><div class="board" id="board"></div><div class="controls"><button class="action" id="newGame">New game</button></div></main>
+<script>
+const boardElement=document.getElementById('board');const message=document.getElementById('message');const newGame=document.getElementById('newGame');const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];let board;let player;let over;
+function start(){board=Array(9).fill('');player='X';over=false;message.textContent="X's turn";boardElement.innerHTML='';board.forEach((_,index)=>{const cell=document.createElement('button');cell.className='cell';cell.type='button';cell.addEventListener('click',()=>play(index));boardElement.appendChild(cell)})}
+function play(index){if(over||board[index])return;board[index]=player;const cell=boardElement.children[index];cell.textContent=player;cell.classList.toggle('o',player==='O');cell.disabled=true;const winner=wins.find(line=>line.every(position=>board[position]===player));if(winner){over=true;message.textContent=player+' wins!';return}if(board.every(Boolean)){over=true;message.textContent="It's a draw.";return}player=player==='X'?'O':'X';message.textContent=player+"'s turn"}
+newGame.addEventListener('click',start);start();
+</script>
+</body>
+</html>

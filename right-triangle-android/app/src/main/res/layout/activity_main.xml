@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/paper"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MEASURE WITH CONFIDENCE"
+            android:textColor="@color/coral"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.12" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Right triangle calculator"
+            android:textColor="@color/ink"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Enter the two legs in feet and inches. Get the diagonal and angles instantly."
+            android:textColor="@color/muted"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/panel"
+            android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Triangle dimensions" android:textColor="@color/ink" android:textSize="20sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="22dp" android:text="Leg A" android:textColor="@color/ink" android:textStyle="bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
+                <EditText android:id="@+id/legAFeet" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:background="@drawable/input_background" android:hint="0" android:inputType="number" android:padding="12dp" android:singleLine="true" android:contentDescription="Leg A feet" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_marginStart="-32dp" android:text="ft" android:textColor="@color/muted" />
+                <EditText android:id="@+id/legAInches" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_weight="1" android:background="@drawable/input_background" android:hint="0" android:inputType="numberDecimal" android:padding="12dp" android:singleLine="true" android:contentDescription="Leg A inches" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_marginStart="-32dp" android:text="in" android:textColor="@color/muted" />
+            </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:text="Leg B" android:textColor="@color/ink" android:textStyle="bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:orientation="horizontal">
+                <EditText android:id="@+id/legBFeet" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:background="@drawable/input_background" android:hint="0" android:inputType="number" android:padding="12dp" android:singleLine="true" android:contentDescription="Leg B feet" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_marginStart="-32dp" android:text="ft" android:textColor="@color/muted" />
+                <EditText android:id="@+id/legBInches" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="10dp" android:layout_weight="1" android:background="@drawable/input_background" android:hint="0" android:inputType="numberDecimal" android:padding="12dp" android:singleLine="true" android:contentDescription="Leg B inches" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:layout_marginStart="-32dp" android:text="in" android:textColor="@color/muted" />
+            </LinearLayout>
+            <Button android:id="@+id/calculateButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:background="@drawable/button_background" android:text="Calculate triangle" android:textAllCaps="false" android:textColor="@android:color/white" />
+            <TextView android:id="@+id/error" android:layout_width="match_parent" android:layout_height="24dp" android:layout_marginTop="8dp" android:textColor="@color/coral" android:textSize="12sp" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Use decimal inches for fractions, such as 6.5 for 6 1/2 inches." android:textColor="@color/muted" android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:background="@drawable/panel" android:orientation="vertical">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Results" android:textColor="@color/ink" android:textSize="20sp" android:textStyle="bold" />
+            <TextView android:id="@+id/summary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="Waiting for dimensions" android:textColor="@color/muted" android:textSize="12sp" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="22dp" android:text="HYPOTENUSE" android:textColor="@color/muted" android:textSize="11sp" android:textStyle="bold" />
+            <TextView android:id="@+id/hypotenuse" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="--" android:textColor="@color/ink" android:textSize="22sp" android:textStyle="bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="18dp" android:orientation="horizontal">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ANGLE A" android:textColor="@color/muted" android:textSize="11sp" android:textStyle="bold" /><TextView android:id="@+id/angleA" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="--" android:textColor="@color/ink" android:textSize="20sp" android:textStyle="bold" /></LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ANGLE B" android:textColor="@color/muted" android:textSize="11sp" android:textStyle="bold" /><TextView android:id="@+id/angleB" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="--" android:textColor="@color/ink" android:textSize="20sp" android:textStyle="bold" /></LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
