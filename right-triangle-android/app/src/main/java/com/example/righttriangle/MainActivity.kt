@@ -24,7 +24,6 @@ class MainActivity : Activity() {
         binding.calculateButton.setOnClickListener { calculate() }
         binding.feetInchesCalculateButton.setOnClickListener { calculateFeetInches() }
         binding.volumeCalculateButton.setOnClickListener { calculateVolume() }
-        binding.tonsCalculateButton.setOnClickListener { calculateTons() }
         fields.forEach { it.setOnEditorActionListener { _, _, _ -> calculate(); true } }
     }
 
@@ -140,19 +139,6 @@ class MainActivity : Activity() {
         val cubicYards = height * width * length / 46656.0
         binding.volumeResult.text = "${formatDecimal(cubicYards)} cubic yd"
         binding.volumeSummary.text = "Order ${kotlin.math.ceil(cubicYards).toInt()} cubic yd"
-    }
-
-    private fun calculateTons() {
-        val cubicYards = value(binding.tonsCubicYards)
-        binding.tonsError.text = ""
-        if (cubicYards < 0) {
-            binding.tonsError.text = "Cubic yards cannot be negative."
-            return
-        }
-        if (cubicYards == 0.0) {
-            binding.tonsError.text = "Enter the cubic yards required."
-            return
-        }
         val material = binding.materialSpinner.selectedItem.toString()
         val tonsPerCubicYard = when (material) {
             "Sand" -> 1.4
